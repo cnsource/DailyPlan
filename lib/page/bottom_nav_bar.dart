@@ -12,12 +12,6 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
-    tapSearch() => {
-          Navigator.pushNamed(
-            context,
-            "/second"
-          ),
-        };
 
     return Container(
       height: 60,
@@ -25,12 +19,18 @@ class _BottomNavBarState extends State<BottomNavBar> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const Icon(Icons.home, size: 24),
           GestureDetector(
-            onTap: tapSearch,
+            onTap: () => Navigator.pushNamed(context, "/"),
+            child: Icon(Icons.home, size: 24),
+          ),
+          GestureDetector(
+            onTap: () => Navigator.pushNamed(context, "/second"),
             child: Icon(Icons.search, size: 24),
           ),
-          const Icon(Icons.person, size: 24, color: Colors.amber),
+          GestureDetector(
+            onTap: () => Navigator.pushNamed(context, "/"),
+            child: Icon(Icons.person, size: 24),
+          ),
         ],
       ),
     );
