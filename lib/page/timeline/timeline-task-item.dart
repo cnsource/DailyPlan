@@ -1,4 +1,3 @@
-import 'package:ert/components/capsule_item.dart';
 import 'package:ert/components/text-capsule.dart';
 import 'package:flutter/material.dart';
 

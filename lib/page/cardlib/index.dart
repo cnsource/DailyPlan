@@ -1,3 +1,4 @@
+import 'package:ert/page/AppScaffold.dart';
 import 'package:flutter/material.dart';
 
 class CardLib extends StatelessWidget {
@@ -5,10 +6,6 @@ class CardLib extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.amber,
-      child: Text("Card lib"),
-    );
+    return AppScaffold(body: Text("data"));
   }
-  
 }

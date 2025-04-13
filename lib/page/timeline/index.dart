@@ -1,11 +1,9 @@
-import 'dart:ui';
-
 import 'package:ert/components/blur_box.dart';
-import 'package:ert/page/timeline/time_line_header.dart';
-import 'package:ert/page/timeline/time_line_body.dart';
+import 'package:ert/page/AppScaffold.dart';
+import 'package:ert/page/timeline/time-line-body.dart';
 import 'package:flutter/material.dart';
 
-import '../bottom_nav_bar.dart';
+import '../AppHeaderContainer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,30 +17,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xffefefef),
-      body: SafeArea(
-        child: Container(
-          color: Colors.white,
-          child: Column(
-            children: [
-              Expanded(
-                child: Stack(
-                  children: [
-                    TimelineBody(),
-                    BlurBox(),
-                    TimelineHeader()
-                  ],
-                ),
-                // 顶部区域
-              ),
-
-              // 底部区域
-              BottomNavBar()
-            ],
-          ),
-        ),
-      ),
+    return AppScaffold(
+      body: Stack(
+        children: [TimelineBody(), BlurBox(), AppHeader(title: "今日时间轴")],
+      )
     );
   }
 }
