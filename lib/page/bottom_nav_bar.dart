@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -20,15 +21,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           GestureDetector(
-            onTap: () => Navigator.pushNamed(context, "/"),
+            onTap: ()=> context.pushReplacement("/"),
             child: Icon(Icons.home, size: 24),
           ),
           GestureDetector(
-            onTap: () => Navigator.pushNamed(context, "/second"),
+            onTap: ()=> context.pushReplacement("/second"),
             child: Icon(Icons.search, size: 24),
           ),
           GestureDetector(
-            onTap: () => Navigator.pushNamed(context, "/"),
+            onTap: ()=> context.pushReplacement("/"),
             child: Icon(Icons.person, size: 24),
           ),
         ],
