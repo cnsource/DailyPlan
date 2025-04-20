@@ -21,15 +21,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           GestureDetector(
-            onTap: ()=> context.pushReplacement("/"),
+            onTap: ()=> context.go("/"),
             child: Icon(Icons.home, size: 24),
           ),
           GestureDetector(
-            onTap: ()=> context.pushReplacement("/second"),
+            onTap: ()=> context.go("/second"),
             child: Icon(Icons.search, size: 24),
           ),
           GestureDetector(
-            onTap: ()=> context.pushReplacement("/"),
+            onTap: ()=> context.go("/"),
             child: Icon(Icons.person, size: 24),
           ),
         ],

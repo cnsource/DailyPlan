@@ -5,22 +5,20 @@ import 'package:flutter/material.dart';
 
 import '../AppHeaderContainer.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class TimelinePage extends StatefulWidget {
+  const TimelinePage({super.key});
 
   @override
   State<StatefulWidget> createState() {
-    return _HomePageState();
+    return _TimelinePageState();
   }
 }
 
-class _HomePageState extends State<HomePage> {
+class _TimelinePageState extends State<TimelinePage> {
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
-      body: Stack(
-        children: [TimelineBody(), BlurBox(), AppHeader(title: "今日时间轴")],
-      )
+    return Stack(
+      children: [TimelineBody(), BlurBox(), AppHeader(title: "今日时间轴")],
     );
   }
 }

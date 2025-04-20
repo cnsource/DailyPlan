@@ -1,44 +1,90 @@
 import 'package:ert/page/cardlib/index.dart';
+import 'package:ert/page/profile/index.dart';
 import 'package:ert/page/timeline/index.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 void main() {
-  final GoRouter router = GoRouter(
-    initialLocation: '/',
-    routes: [
-      GoRoute(
-        path: '/',
-        name: '/',
-        builder: (context, state) => HomePage(),
-      ),
-      GoRoute(
-        path: '/second',
-        name: '/second',
-        builder: (context, state) => const CardLib(),
-      ),
-    ],
-  );
-
-  runApp(MyApp(router: router));
+  runApp(MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
-  final GoRouter router;
-  const MyApp({super.key, required this.router});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      routerConfig: router,
-    );
+    return MaterialApp(home: Scaffold(body: PageViewExample()));
   }
 }
 
+class PageViewExample extends StatefulWidget {
+  const PageViewExample({super.key});
 
+  @override
+  _PageViewExampleState createState() => _PageViewExampleState();
+}
+
+class _PageViewExampleState extends State<PageViewExample> {
+  final PageController _pageController = PageController(initialPage: 0);
+  int _currentPage = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Column(
+        children: [
+          Expanded(
+            child: PageView(
+              controller: _pageController,
+              onPageChanged: (index) {
+                setState(() {
+                  _currentPage = index;
+                });
+              },
+              children: [TimelinePage(), CardLib(), ProfilePage()],
+            ),
+          ),
+          Container(
+            height: 60,
+            color: Colors.white,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  icon: Icon(Icons.home, size: 24, color: _currentPage == 0 ? Colors.blue : null,),
+                  onPressed: () => _pageController.jumpToPage(0),
+                ),
+                IconButton(
+                  icon: Icon(Icons.search, size: 24, color: _currentPage == 1 ? Colors.blue : null,),
+                  onPressed: () => _pageController.jumpToPage(1),
+                ),
+                IconButton(
+                  icon: Icon(Icons.person, size: 24, color: _currentPage == 2 ? Colors.blue : null,),
+                  onPressed: () => _pageController.jumpToPage(2),
+                ),
+              ],
+            ),
+          )
+          // Container(
+          //   height: 60,
+          //   color: Colors.green.shade100,
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //     children: [
+          //       GestureDetector(
+          //         onTap: () => {_pageController.jumpToPage(0)},
+          //         child: Icon(Icons.home, size: 24),
+          //       ),
+          //       GestureDetector(
+          //         onTap: () => {_pageController.jumpToPage(1)},
+          //         child: Icon(Icons.search, size: 24),
+          //       ),
+          //       GestureDetector(
+          //         onTap: () => {_pageController.jumpToPage(2)},
+          //         child: Icon(Icons.person, size: 24),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+        ],
+      ),
+    );
+  }
+}

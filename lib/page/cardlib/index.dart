@@ -6,6 +6,6 @@ class CardLib extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(body: Text("data"));
+    return Text("data");
   }
 }
