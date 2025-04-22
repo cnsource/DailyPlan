@@ -52,7 +52,17 @@ class _PageViewExampleState extends State<PageViewExample> {
               ),
               Container(
                 height: 60,
-                color: Colors.white,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withAlpha(60), // 阴影颜色
+                      spreadRadius: 2, // 阴影扩散半径
+                      blurRadius: 5, // 阴影模糊半径
+                      offset: const Offset(0, -3), // 阴影偏移量，负数表示向上
+                    ),
+                  ],
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
