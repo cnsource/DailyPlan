@@ -2,6 +2,7 @@ import 'package:ert/page/cardlib/index.dart';
 import 'package:ert/page/profile/index.dart';
 import 'package:ert/page/timeline/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,7 +11,10 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Scaffold(body: PageViewExample()));
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(body: PageViewExample()),
+    );
   }
 }
 
@@ -27,63 +31,82 @@ class _PageViewExampleState extends State<PageViewExample> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: [
-          Expanded(
-            child: PageView(
-              controller: _pageController,
-              onPageChanged: (index) {
-                setState(() {
-                  _currentPage = index;
-                });
-              },
-              children: [TimelinePage(), CardLib(), ProfilePage()],
-            ),
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.dark,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        resizeToAvoidBottomInset: false,
+        body: SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                child: PageView(
+                  controller: _pageController,
+                  onPageChanged: (index) {
+                    setState(() {
+                      _currentPage = index;
+                    });
+                  },
+                  children: [TimelinePage(), CardLib(), ProfilePage()],
+                ),
+              ),
+              Container(
+                height: 60,
+                color: Colors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    IconButton(
+                      icon: Icon(
+                        Icons.home,
+                        size: 24,
+                        color: _currentPage == 0 ? Colors.blue : null,
+                      ),
+                      onPressed: () => _pageController.jumpToPage(0),
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.search,
+                        size: 24,
+                        color: _currentPage == 1 ? Colors.blue : null,
+                      ),
+                      onPressed: () => _pageController.jumpToPage(1),
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.person,
+                        size: 24,
+                        color: _currentPage == 2 ? Colors.blue : null,
+                      ),
+                      onPressed: () => _pageController.jumpToPage(2),
+                    ),
+                  ],
+                ),
+              ),
+              // Container(
+              //   height: 60,
+              //   color: Colors.green.shade100,
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //     children: [
+              //       GestureDetector(
+              //         onTap: () => {_pageController.jumpToPage(0)},
+              //         child: Icon(Icons.home, size: 24),
+              //       ),
+              //       GestureDetector(
+              //         onTap: () => {_pageController.jumpToPage(1)},
+              //         child: Icon(Icons.search, size: 24),
+              //       ),
+              //       GestureDetector(
+              //         onTap: () => {_pageController.jumpToPage(2)},
+              //         child: Icon(Icons.person, size: 24),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+            ],
           ),
-          Container(
-            height: 60,
-            color: Colors.white,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.home, size: 24, color: _currentPage == 0 ? Colors.blue : null,),
-                  onPressed: () => _pageController.jumpToPage(0),
-                ),
-                IconButton(
-                  icon: Icon(Icons.search, size: 24, color: _currentPage == 1 ? Colors.blue : null,),
-                  onPressed: () => _pageController.jumpToPage(1),
-                ),
-                IconButton(
-                  icon: Icon(Icons.person, size: 24, color: _currentPage == 2 ? Colors.blue : null,),
-                  onPressed: () => _pageController.jumpToPage(2),
-                ),
-              ],
-            ),
-          )
-          // Container(
-          //   height: 60,
-          //   color: Colors.green.shade100,
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //     children: [
-          //       GestureDetector(
-          //         onTap: () => {_pageController.jumpToPage(0)},
-          //         child: Icon(Icons.home, size: 24),
-          //       ),
-          //       GestureDetector(
-          //         onTap: () => {_pageController.jumpToPage(1)},
-          //         child: Icon(Icons.search, size: 24),
-          //       ),
-          //       GestureDetector(
-          //         onTap: () => {_pageController.jumpToPage(2)},
-          //         child: Icon(Icons.person, size: 24),
-          //       ),
-          //     ],
-          //   ),
-          // ),
-        ],
+        ),
       ),
     );
   }
