@@ -16,7 +16,7 @@ class _DailyAnalyzerCardState extends State<DailyAnalyzerCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(8),
+      padding: EdgeInsets.symmetric(horizontal: 8),
       child: Container(
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(

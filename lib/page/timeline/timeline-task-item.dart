@@ -16,39 +16,15 @@ class _TimeLineTaskItemState extends State<TimeLineTaskItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 12, right: 8),
+      padding: EdgeInsets.only(left: 8, right: 8),
       child: IntrinsicHeight(
         // 使用 IntrinsicHeight 强制子组件高度一致
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch, // 使 Row 的子组件充满父容器的高度
           children: [
-            Column(
-              // 时间轴
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                // 以后改成动态列表，展开状态下展示 n 个时间值，折叠状态下展示起始时间和结束时间
-                Text(
-                  "8:00",
-                  style: TextStyle(fontSize: 16, color: Colors.black),
-                ),
-                Text(
-                  "12:00",
-                  style: TextStyle(fontSize: 16, color: Colors.black),
-                ),
-                Text(
-                  "14:00",
-                  style: TextStyle(fontSize: 16, color: Colors.black),
-                ),
-                Text(
-                  "15:00",
-                  style: TextStyle(fontSize: 16, color: Colors.black),
-                ),
-              ],
-            ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.only(left: 4),
+                padding: EdgeInsets.only(left: 0),
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.blue,
