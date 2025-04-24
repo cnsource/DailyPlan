@@ -18,7 +18,7 @@ class _TimeLineTaskItemState extends State<TimeLineTaskItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 8, right: 8),
+      padding: EdgeInsets.symmetric(horizontal: 16),
       child: Padding(
         padding: EdgeInsets.only(left: 0),
         child: Container(

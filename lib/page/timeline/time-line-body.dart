@@ -21,6 +21,9 @@ class _TimelineBodyState extends State<TimelineBody> {
           Container(height: 55),
           DailyAnalyzerCard(),
           ...List.generate(50, (index) => TimeLineTaskItem()),
+          SizedBox(
+            height: 20,
+          )
         ],
       ),
     );
