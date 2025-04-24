@@ -6,17 +6,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 
 void main() async {
-  // 确保在调用 runApp 之前初始化 Flutter 绑定
-  WidgetsFlutterBinding.ensureInitialized();
-  // 获取设备支持的最高刷新率
-  final List<DisplayMode> modes = await FlutterDisplayMode.supported;
-  final DisplayMode active = await FlutterDisplayMode.active;
-
-  print('Supported modes: $modes');
-  print('Active mode: $active');
-
-  // 设置设备的最高刷新率
-  await FlutterDisplayMode.setHighRefreshRate();
+  // // 确保在调用 runApp 之前初始化 Flutter 绑定
+  // WidgetsFlutterBinding.ensureInitialized();
+  // // 获取设备支持的最高刷新率
+  // final List<DisplayMode> modes = await FlutterDisplayMode.supported;
+  // final DisplayMode active = await FlutterDisplayMode.active;
+  //
+  // print('Supported modes: $modes');
+  // print('Active mode: $active');
+  //
+  // // 设置设备的最高刷新率
+  // await FlutterDisplayMode.setHighRefreshRate();
   runApp(MyApp());
 }
 
