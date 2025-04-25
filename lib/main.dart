@@ -3,20 +3,9 @@ import 'package:ert/page/profile/index.dart';
 import 'package:ert/page/timeline/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_displaymode/flutter_displaymode.dart';
 
 void main() async {
-  // // 确保在调用 runApp 之前初始化 Flutter 绑定
-  // WidgetsFlutterBinding.ensureInitialized();
-  // // 获取设备支持的最高刷新率
-  // final List<DisplayMode> modes = await FlutterDisplayMode.supported;
-  // final DisplayMode active = await FlutterDisplayMode.active;
-  //
-  // print('Supported modes: $modes');
-  // print('Active mode: $active');
-  //
-  // // 设置设备的最高刷新率
-  // await FlutterDisplayMode.setHighRefreshRate();
+
   runApp(MyApp());
 }
 
@@ -78,54 +67,57 @@ class _PageViewExampleState extends State<PageViewExample> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    IconButton(
-                      icon: Icon(
-                        Icons.home,
-                        size: 24,
-                        color: _currentPage == 0 ? Colors.blue : null,
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          _currentPage = 0;
+                        });
+                        _pageController.jumpToPage(0);
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.all(16), // 调整这个值来扩大点击区域
+                        child: Icon(
+                          Icons.home,
+                          size: 24,
+                          color: _currentPage == 0 ? Colors.blue : null,
+                        ),
                       ),
-                      onPressed: () => _pageController.jumpToPage(0),
                     ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.search,
-                        size: 24,
-                        color: _currentPage == 1 ? Colors.blue : null,
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          _currentPage = 1;
+                        });
+                        _pageController.jumpToPage(1);
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.all(16), // 调整这个值来扩大点击区域
+                        child: Icon(
+                          Icons.search,
+                          size: 24,
+                          color: _currentPage == 1 ? Colors.blue : null,
+                        ),
                       ),
-                      onPressed: () => _pageController.jumpToPage(1),
                     ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.person,
-                        size: 24,
-                        color: _currentPage == 2 ? Colors.blue : null,
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          _currentPage = 2;
+                        });
+                        _pageController.jumpToPage(2);
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.all(16), // 调整这个值来扩大点击区域
+                        child: Icon(
+                          Icons.person,
+                          size: 24,
+                          color: _currentPage == 2 ? Colors.blue : null,
+                        ),
                       ),
-                      onPressed: () => _pageController.jumpToPage(2),
                     ),
                   ],
-                ),
+                )
               ),
-              // Container(
-              //   height: 60,
-              //   color: Colors.green.shade100,
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //     children: [
-              //       GestureDetector(
-              //         onTap: () => {_pageController.jumpToPage(0)},
-              //         child: Icon(Icons.home, size: 24),
-              //       ),
-              //       GestureDetector(
-              //         onTap: () => {_pageController.jumpToPage(1)},
-              //         child: Icon(Icons.search, size: 24),
-              //       ),
-              //       GestureDetector(
-              //         onTap: () => {_pageController.jumpToPage(2)},
-              //         child: Icon(Icons.person, size: 24),
-              //       ),
-              //     ],
-              //   ),
-              // ),
             ],
           ),
         ),

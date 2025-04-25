@@ -15,40 +15,59 @@ class _TimelineBodyState extends State<TimelineBody> {
   void _showOptions(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      useSafeArea: true,
+      backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.zero, // 设置无圆角
+      ),
       builder: (BuildContext context) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              leading: const Icon(Icons.add),
-              title: const Text('选项 1'),
-              onTap: () {
-                // 处理选项 1 的逻辑
-                Navigator.pop(context); // 关闭底部弹窗
-                print('选项 1 被选中');
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.edit),
-              title: const Text('选项 2'),
-              onTap: () {
-                // 处理选项 2 的逻辑
-                Navigator.pop(context); // 关闭底部弹窗
-                print('选项 2 被选中');
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.delete),
-              title: const Text('选项 3'),
-              onTap: () {
-                // 处理选项 3 的逻辑
-                Navigator.pop(context); // 关闭底部弹窗
-                print('选项 3 被选中');
-              },
-            ),
-          ],
+        return Padding(
+          padding: EdgeInsets.symmetric(vertical: 24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildOption(Icons.image, '图片添加', () {
+                    // 处理图片添加逻辑
+                    Navigator.pop(context);
+                  }),
+                  _buildOption(Icons.content_paste, '剪贴板', () {
+                    // 处理剪贴板逻辑
+                    Navigator.pop(context);
+                  }),
+                  _buildOption(Icons.keyboard, '文本输入', () {
+                    // 处理文本输入逻辑
+                    Navigator.pop(context);
+                  }),
+                  _buildOption(Icons.mic, '语音添加', () {
+                    // 处理语音添加逻辑
+                    Navigator.pop(context);
+                  }),
+                ],
+              ),
+            ],
+          ),
         );
       },
+    );
+  }
+
+  Widget _buildOption(IconData icon, String label, VoidCallback onTap) {
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: onTap,
+          child: CircleAvatar(
+            radius: 30,
+            backgroundColor: Colors.grey[200],
+            child: Icon(icon),
+          ),
+        ),
+        const SizedBox(height: 5),
+        Text(label),
+      ],
     );
   }
 
